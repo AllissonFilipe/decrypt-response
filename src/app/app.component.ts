@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import * as AesJS from 'aes-js';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
   encrypted: string;
   decrypted: string;
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService,  private clipboardApi: ClipboardService) {}
 
   public decrypt() {
     try {
@@ -27,7 +28,7 @@ export class AppComponent {
       this.toastr.success('data successfully decrypted', 'Success');
     } catch(e) {
       this.toastr.error('It was not possible to decrypt the data', 'Error');
-      this.clear();
+      this.clean();
     }
   }
 
@@ -35,10 +36,15 @@ export class AppComponent {
     return text.split(',').map(value => parseInt(value.trim(), 10));
   }
 
-  public clear() {
+  public clean() {
     this.encrypted = '';
     this.decrypted = '';
     this.key = '';
     this.iv = '';
+  }
+
+  public copyDecrypted() {
+    this.clipboardApi.copyFromContent(this.decrypted);
+    this.toastr.success('Copied', 'Success');
   }
 }

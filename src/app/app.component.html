@@ -24,12 +24,12 @@
                     </div>
                 </div>
                 <label for="encrypted">Encrypted:</label><br>
-                <input type="text" [(ngModel)]="encrypted" autocomplete="off" name="encrypted" id="encrypted" class="form-control mb-1">
-                <label for="decrypted">Decrypted:</label><br>
-                <textarea type="text" [(ngModel)]="decrypted" disabled name="decrypted" id="decrypted" class="form-control"></textarea>
+                <input type="text" [(ngModel)]="encrypted" autocomplete="off" name="encrypted" id="encrypted" class="form-control mb-3">
+                <label for="decrypted" class="mr-1">Decrypted:</label><button class="btn btn-outline-primary btn-sm" (click)="copyDecrypted()" [disabled]="!decrypted">copy</button><br>
+                <textarea type="text" [(ngModel)]="decrypted" disabled name="decrypted" id="decrypted" class="form-control bg-white"></textarea>
                 <div class="mt-4 mb-5 text-center">
                     <button type="button" [disabled]="!encrypted || !key || !iv" (click)="decrypt()" name="decrypt" class="btn btn-primary btn-md mr-2" >Decrypt</button>
-                    <input type="button" name="clear" (click)="clear()" class="btn btn-danger btn-md" value="Clear">
+                    <input type="button" name="clear" (click)="clean()" class="btn btn-danger btn-md" value="Clean">
                 </div>
             </div>
         </div>

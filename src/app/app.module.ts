@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClipboardModule, ClipboardService } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ClipboardModule
   ],
-  providers: [],
+  providers: [ClipboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
